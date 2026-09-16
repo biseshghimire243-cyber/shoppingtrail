@@ -1,0 +1,16 @@
+{
+  "name": "clothing-shop-backend",
+  "version": "1.0.0",
+  "description": "Clothing Shop E-commerce Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3"
+  }
+}
