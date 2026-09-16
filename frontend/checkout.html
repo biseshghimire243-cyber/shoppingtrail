@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout - Clothify</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        CLOTHIFY
+    </a>
+
+    <div class="nav-icons">
+
+        <a href="cart.html">
+            🛒
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="form-container">
+
+    <h1>Checkout</h1>
+
+    <form onsubmit="placeOrder(event)">
+
+        <div class="form-group">
+
+            <label>
+                Shipping Address
+            </label>
+
+            <textarea
+                name="address"
+                rows="4"
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                name="phone"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Payment Method
+            </label>
+
+            <select name="payment_method">
+
+                <option>
+                    Cash on Delivery
+                </option>
+
+                <option>
+                    Bank Transfer
+                </option>
+
+                <option>
+                    QR Payment
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="form-button"
+        >
+            Place Order
+        </button>
+
+    </form>
+
+</div>
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

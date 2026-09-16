@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shop - Clothify</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        CLOTHIFY
+    </a>
+
+    <ul class="nav-links">
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="products.html">Shop</a></li>
+
+        <li><a href="products.html?category=Men">Men</a></li>
+
+        <li><a href="products.html?category=Women">Women</a></li>
+
+    </ul>
+
+    <div class="nav-icons">
+
+        <a href="login.html">👤</a>
+
+        <a href="cart.html">
+            🛒
+            <span class="cart-count">0</span>
+        </a>
+
+    </div>
+
+</header>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>All Products</h2>
+
+            <p>
+                Find your next favorite outfit
+            </p>
+
+        </div>
+
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="search"
+                class="search-box"
+                placeholder="Search clothing..."
+                oninput="searchProducts()"
+            >
+
+            <select
+                class="filter-select"
+                onchange="filterCategory(this.value)"
+            >
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Men">
+                    Men
+                </option>
+
+                <option value="Women">
+                    Women
+                </option>
+
+                <option value="T-Shirts">
+                    T-Shirts
+                </option>
+
+                <option value="Jeans">
+                    Jeans
+                </option>
+
+                <option value="Jackets">
+                    Jackets
+                </option>
+
+                <option value="Dresses">
+                    Dresses
+                </option>
+
+                <option value="Hoodies">
+                    Hoodies
+                </option>
+
+                <option value="Accessories">
+                    Accessories
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            id="product-list"
+            class="product-grid"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <h3>CLOTHIFY</h3>
+
+    <p>
+        Modern fashion for modern lifestyles.
+    </p>
+
+    <div class="footer-bottom">
+        © 2026 Clothify
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
