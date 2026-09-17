@@ -1090,3 +1090,63 @@ document.addEventListener(
 
     }
 );
+
+
+// ==========================================
+// CONTACT FORM
+// ==========================================
+
+const contactForm =
+    document.getElementById("contactForm");
+
+const contactMessage =
+    document.getElementById("contactMessage");
+
+
+if (contactForm) {
+
+    contactForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            contactMessage.textContent =
+                "Thank you! Your message has been received.";
+
+            contactMessage.classList.add("show");
+
+            contactForm.reset();
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// NEWSLETTER
+// ==========================================
+
+const newsletterForm =
+    document.querySelector(".newsletter-form");
+
+
+if (newsletterForm) {
+
+    newsletterForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Thank you for subscribing to WearHouse! 📩"
+            );
+
+            newsletterForm.reset();
+
+        }
+    );
+
+}
