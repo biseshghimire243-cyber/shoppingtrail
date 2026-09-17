@@ -5,185 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>WearHouse Admin</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/admin.css">
 
-    <style>
-        body {
-            background: #f5f5f5;
-        }
-
-        .admin-container {
-            width: 95%;
-            max-width: 1400px;
-            margin: 40px auto;
-        }
-
-        .admin-header {
-            background: #111;
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-
-        .admin-header h1 {
-            margin: 0 0 8px;
-        }
-
-        .admin-header p {
-            margin: 0;
-            color: #ccc;
-        }
-
-        .admin-section {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
-
-        .admin-section h2 {
-            margin-top: 0;
-        }
-
-        .product-form {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .product-form .full {
-            grid-column: 1 / -1;
-        }
-
-        .product-form input,
-        .product-form textarea,
-        .product-form select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 15px;
-        }
-
-        .product-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .checkbox-group input {
-            width: auto;
-        }
-
-        .admin-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .admin-buttons button {
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn-add {
-            background: #111;
-            color: white;
-        }
-
-        .btn-reset {
-            background: #ddd;
-            color: #111;
-        }
-
-        .products-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .products-table th,
-        .products-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-        }
-
-        .products-table th {
-            background: #f5f5f5;
-        }
-
-        .product-image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .edit-btn,
-        .delete-btn {
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        .edit-btn {
-            background: #2563eb;
-            color: white;
-        }
-
-        .delete-btn {
-            background: #dc2626;
-            color: white;
-        }
-
-        .message {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-        }
-
-        .success {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        @media (max-width: 768px) {
-
-            .product-form {
-                grid-template-columns: 1fr;
-            }
-
-            .product-form .full {
-                grid-column: auto;
-            }
-
-            .products-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 
 <body>
@@ -268,8 +92,16 @@
             ></textarea>
 
             <div class="checkbox-group full">
-                <input type="checkbox" id="featured">
-                <label for="featured">Featured Product</label>
+
+                <input
+                    type="checkbox"
+                    id="featured"
+                >
+
+                <label for="featured">
+                    Featured Product
+                </label>
+
             </div>
 
             <div class="admin-buttons full">
@@ -294,7 +126,10 @@
 
         </form>
 
-        <div id="message" class="message"></div>
+        <div
+            id="message"
+            class="message"
+        ></div>
 
     </div>
 
@@ -308,6 +143,7 @@
         <table class="products-table">
 
             <thead>
+
                 <tr>
                     <th>Image</th>
                     <th>Name</th>
@@ -317,14 +153,17 @@
                     <th>Featured</th>
                     <th>Actions</th>
                 </tr>
+
             </thead>
 
             <tbody id="products-table-body">
+
                 <tr>
                     <td colspan="7">
                         Loading products...
                     </td>
                 </tr>
+
             </tbody>
 
         </table>
@@ -349,22 +188,30 @@ async function loadCategories() {
 
     try {
 
-        const response = await fetch(`${API_URL}/categories`);
+        const response =
+            await fetch(`${API_URL}/categories`);
 
-        const categories = await response.json();
+        const categories =
+            await response.json();
 
-        const select = document.getElementById("category_id");
+        const select =
+            document.getElementById("category_id");
 
         select.innerHTML = `
-            <option value="">Select Category</option>
+            <option value="">
+                Select Category
+            </option>
         `;
 
         categories.forEach(category => {
 
-            const option = document.createElement("option");
+            const option =
+                document.createElement("option");
 
             option.value = category.id;
-            option.textContent = category.name;
+
+            option.textContent =
+                category.name;
 
             select.appendChild(option);
 
@@ -372,7 +219,10 @@ async function loadCategories() {
 
     } catch (error) {
 
-        console.error("Category loading error:", error);
+        console.error(
+            "Category loading error:",
+            error
+        );
 
     }
 
@@ -387,13 +237,19 @@ async function loadProducts() {
 
     try {
 
-        const response = await fetch(`${API_URL}/products`);
+        const response =
+            await fetch(`${API_URL}/products`);
 
-        const products = await response.json();
+        const products =
+            await response.json();
 
-        const tbody = document.getElementById("products-table-body");
+        const tbody =
+            document.getElementById(
+                "products-table-body"
+            );
 
         tbody.innerHTML = "";
+
 
         if (products.length === 0) {
 
@@ -411,25 +267,37 @@ async function loadProducts() {
 
         products.forEach(product => {
 
-            const row = document.createElement("tr");
+            const row =
+                document.createElement("tr");
+
 
             row.innerHTML = `
 
                 <td>
+
                     <img
                         src="${product.image || 'https://via.placeholder.com/60'}"
                         class="product-image"
                         onerror="this.src='https://via.placeholder.com/60'"
                     >
+
                 </td>
 
-                <td>${product.name}</td>
+                <td>
+                    ${product.name}
+                </td>
 
-                <td>Rs. ${product.price}</td>
+                <td>
+                    Rs. ${product.price}
+                </td>
 
-                <td>${product.category_name || "No Category"}</td>
+                <td>
+                    ${product.category_name || "No Category"}
+                </td>
 
-                <td>${product.stock}</td>
+                <td>
+                    ${product.stock}
+                </td>
 
                 <td>
                     ${product.featured ? "Yes" : "No"}
@@ -455,13 +323,17 @@ async function loadProducts() {
 
             `;
 
+
             tbody.appendChild(row);
 
         });
 
     } catch (error) {
 
-        console.error("Product loading error:", error);
+        console.error(
+            "Product loading error:",
+            error
+        );
 
     }
 
@@ -474,127 +346,164 @@ async function loadProducts() {
 
 document
     .getElementById("product-form")
-    .addEventListener("submit", async function(event) {
+    .addEventListener(
+        "submit",
+        async function(event) {
 
-        event.preventDefault();
-
-
-        const product = {
-
-            name: document.getElementById("name").value,
-
-            description:
-                document.getElementById("description").value,
-
-            price:
-                document.getElementById("price").value,
-
-            discount:
-                document.getElementById("discount").value || 0,
-
-            category_id:
-                document.getElementById("category_id").value,
-
-            image:
-                document.getElementById("image").value,
-
-            size:
-                document.getElementById("size").value,
-
-            color:
-                document.getElementById("color").value,
-
-            stock:
-                document.getElementById("stock").value || 0,
-
-            featured:
-                document.getElementById("featured").checked
-
-        };
+            event.preventDefault();
 
 
-        try {
+            const product = {
 
-            let response;
+                name:
+                    document.getElementById(
+                        "name"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "description"
+                    ).value,
+
+                price:
+                    document.getElementById(
+                        "price"
+                    ).value,
+
+                discount:
+                    document.getElementById(
+                        "discount"
+                    ).value || 0,
+
+                category_id:
+                    document.getElementById(
+                        "category_id"
+                    ).value,
+
+                image:
+                    document.getElementById(
+                        "image"
+                    ).value,
+
+                size:
+                    document.getElementById(
+                        "size"
+                    ).value,
+
+                color:
+                    document.getElementById(
+                        "color"
+                    ).value,
+
+                stock:
+                    document.getElementById(
+                        "stock"
+                    ).value || 0,
+
+                featured:
+                    document.getElementById(
+                        "featured"
+                    ).checked
+
+            };
 
 
-            // UPDATE
+            try {
 
-            if (editingProductId) {
-
-                response = await fetch(
-                    `${API_URL}/products/${editingProductId}`,
-                    {
-                        method: "PUT",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify(product)
-                    }
-                );
-
-            }
+                let response;
 
 
-            // ADD
+                // UPDATE
 
-            else {
+                if (editingProductId) {
 
-                response = await fetch(
-                    `${API_URL}/products`,
-                    {
-                        method: "POST",
+                    response =
+                        await fetch(
+                            `${API_URL}/products/${editingProductId}`,
+                            {
+                                method: "PUT",
 
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
 
-                        body: JSON.stringify(product)
-                    }
-                );
+                                body:
+                                    JSON.stringify(
+                                        product
+                                    )
+                            }
+                        );
 
-            }
+                }
 
 
-            const data = await response.json();
+                // ADD
+
+                else {
+
+                    response =
+                        await fetch(
+                            `${API_URL}/products`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        product
+                                    )
+                            }
+                        );
+
+                }
 
 
-            if (!response.ok) {
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    showMessage(
+                        data.error ||
+                        data.message ||
+                        "Something went wrong",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
 
                 showMessage(
-                    data.error || data.message || "Something went wrong",
+                    data.message,
+                    "success"
+                );
+
+
+                resetForm();
+
+                loadProducts();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Server connection failed",
                     "error"
                 );
 
-                return;
-
             }
 
-
-            showMessage(
-                data.message,
-                "success"
-            );
-
-
-            resetForm();
-
-            loadProducts();
-
-        } catch (error) {
-
-            console.error(error);
-
-            showMessage(
-                "Server connection failed",
-                "error"
-            );
-
         }
-
-    });
+    );
 
 
 // ==========================================
@@ -606,49 +515,86 @@ async function editProduct(id) {
     try {
 
         const response =
-            await fetch(`${API_URL}/products/${id}`);
+            await fetch(
+                `${API_URL}/products/${id}`
+            );
 
-        const product = await response.json();
+        const product =
+            await response.json();
 
 
         editingProductId = id;
 
 
-        document.getElementById("name").value =
+        document.getElementById(
+            "name"
+        ).value =
             product.name || "";
 
-        document.getElementById("description").value =
+
+        document.getElementById(
+            "description"
+        ).value =
             product.description || "";
 
-        document.getElementById("price").value =
+
+        document.getElementById(
+            "price"
+        ).value =
             product.price || "";
 
-        document.getElementById("discount").value =
+
+        document.getElementById(
+            "discount"
+        ).value =
             product.discount || 0;
 
-        document.getElementById("category_id").value =
+
+        document.getElementById(
+            "category_id"
+        ).value =
             product.category_id || "";
 
-        document.getElementById("image").value =
+
+        document.getElementById(
+            "image"
+        ).value =
             product.image || "";
 
-        document.getElementById("size").value =
+
+        document.getElementById(
+            "size"
+        ).value =
             product.size || "";
 
-        document.getElementById("color").value =
+
+        document.getElementById(
+            "color"
+        ).value =
             product.color || "";
 
-        document.getElementById("stock").value =
+
+        document.getElementById(
+            "stock"
+        ).value =
             product.stock || 0;
 
-        document.getElementById("featured").checked =
+
+        document.getElementById(
+            "featured"
+        ).checked =
             product.featured == 1;
 
 
-        document.getElementById("form-title").textContent =
+        document.getElementById(
+            "form-title"
+        ).textContent =
             "Edit Product";
 
-        document.getElementById("submit-button").textContent =
+
+        document.getElementById(
+            "submit-button"
+        ).textContent =
             "Update Product";
 
 
@@ -673,7 +619,9 @@ async function editProduct(id) {
 async function deleteProduct(id) {
 
     const confirmed =
-        confirm("Are you sure you want to delete this product?");
+        confirm(
+            "Are you sure you want to delete this product?"
+        );
 
 
     if (!confirmed) {
@@ -692,13 +640,15 @@ async function deleteProduct(id) {
             );
 
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
 
         if (!response.ok) {
 
             showMessage(
-                data.error || "Delete failed",
+                data.error ||
+                "Delete failed",
                 "error"
             );
 
@@ -737,15 +687,21 @@ function resetForm() {
 
     editingProductId = null;
 
+
     document
         .getElementById("product-form")
         .reset();
 
 
-    document.getElementById("form-title").textContent =
+    document.getElementById(
+        "form-title"
+    ).textContent =
         "Add New Product";
 
-    document.getElementById("submit-button").textContent =
+
+    document.getElementById(
+        "submit-button"
+    ).textContent =
         "Add Product";
 
 }
@@ -758,19 +714,26 @@ function resetForm() {
 function showMessage(text, type) {
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
+
 
     message.textContent = text;
+
 
     message.className =
         `message ${type}`;
 
-    message.style.display = "block";
+
+    message.style.display =
+        "block";
 
 
     setTimeout(() => {
 
-        message.style.display = "none";
+        message.style.display =
+            "none";
 
     }, 3000);
 

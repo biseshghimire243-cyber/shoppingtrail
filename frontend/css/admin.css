@@ -1,0 +1,320 @@
+/* ==========================================
+   WEARHOUSE ADMIN PANEL
+   ========================================== */
+
+body {
+    background: #f5f5f5;
+}
+
+
+/* ==========================================
+   ADMIN CONTAINER
+   ========================================== */
+
+.admin-container {
+    width: 95%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+
+/* ==========================================
+   ADMIN HEADER
+   ========================================== */
+
+.admin-header {
+    background: #111;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.admin-header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+.admin-header p {
+    margin: 0;
+    color: #ccc;
+}
+
+
+/* ==========================================
+   ADMIN SECTION
+   ========================================== */
+
+.admin-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.admin-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   PRODUCT FORM
+   ========================================== */
+
+.product-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.product-form .full {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================
+   FORM INPUTS
+   ========================================== */
+
+.product-form input,
+.product-form textarea,
+.product-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus {
+    border-color: #111;
+}
+
+.product-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+/* ==========================================
+   CHECKBOX
+   ========================================== */
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   ADMIN BUTTONS
+   ========================================== */
+
+.admin-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-buttons button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.admin-buttons button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* Add / Update */
+
+.btn-add {
+    background: #111;
+    color: white;
+}
+
+.btn-add:hover {
+    background: #333;
+}
+
+
+/* Reset */
+
+.btn-reset {
+    background: #ddd;
+    color: #111;
+}
+
+.btn-reset:hover {
+    background: #ccc;
+}
+
+
+/* ==========================================
+   PRODUCTS TABLE
+   ========================================== */
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.products-table th,
+.products-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.products-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+.products-table tr:hover {
+    background: #fafafa;
+}
+
+
+/* ==========================================
+   PRODUCT IMAGE
+   ========================================== */
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* ==========================================
+   ACTION BUTTONS
+   ========================================== */
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+
+/* Edit */
+
+.edit-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* Delete */
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* ==========================================
+   SUCCESS / ERROR MESSAGE
+   ========================================== */
+
+.message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    .admin-container {
+        width: 92%;
+        margin: 20px auto;
+    }
+
+    .admin-header {
+        padding: 20px;
+    }
+
+    .admin-header h1 {
+        font-size: 24px;
+    }
+
+    .admin-section {
+        padding: 18px;
+    }
+
+    .product-form {
+        grid-template-columns: 1fr;
+    }
+
+    .product-form .full {
+        grid-column: auto;
+    }
+
+    .products-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .admin-buttons {
+        flex-direction: column;
+    }
+
+    .admin-buttons button {
+        width: 100%;
+    }
+}
