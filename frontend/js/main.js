@@ -1530,3 +1530,74 @@ document.addEventListener(
 
     }
 );
+// ==========================================
+// PROMOTION POPUP
+// ==========================================
+
+const promoOverlay =
+    document.getElementById("promoOverlay");
+
+const promoClose =
+    document.getElementById("promoClose");
+
+
+if (promoOverlay) {
+
+    // Show popup when homepage loads
+    if (
+        window.location.pathname.endsWith("/") ||
+        window.location.pathname.endsWith("index.html")
+    ) {
+
+        setTimeout(
+            function() {
+
+                promoOverlay.classList.add("active");
+
+            },
+            700
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// CLOSE POPUP
+// ==========================================
+
+if (promoClose) {
+
+    promoClose.addEventListener(
+        "click",
+        function() {
+
+            promoOverlay.classList.remove("active");
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// CLOSE WHEN CLICKING OUTSIDE
+// ==========================================
+
+if (promoOverlay) {
+
+    promoOverlay.addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === promoOverlay) {
+
+                promoOverlay.classList.remove("active");
+
+            }
+
+        }
+    );
+
+}
