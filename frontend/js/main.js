@@ -1069,30 +1069,6 @@ function loadProfile() {
 
 
 // ==========================================
-// INITIALIZE
-// ==========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        loadProducts();
-
-        displayCart();
-
-        loadProductDetails();
-
-        loadOrders();
-
-        loadProfile();
-
-        updateCartCount();
-
-    }
-);
-
-
-// ==========================================
 // CONTACT FORM
 // ==========================================
 
@@ -1111,10 +1087,14 @@ if (contactForm) {
 
             event.preventDefault();
 
-            contactMessage.textContent =
-                "Thank you! Your message has been received.";
+            if (contactMessage) {
 
-            contactMessage.classList.add("show");
+                contactMessage.textContent =
+                    "Thank you! Your message has been received.";
+
+                contactMessage.classList.add("show");
+
+            }
 
             contactForm.reset();
 
@@ -1150,3 +1130,403 @@ if (newsletterForm) {
     );
 
 }
+
+
+// ==========================================
+// CHATBOT
+// ==========================================
+
+const chatbotButton =
+    document.getElementById("chatbotButton");
+
+const chatbot =
+    document.getElementById("chatbot");
+
+const closeChatbot =
+    document.getElementById("closeChatbot");
+
+const chatbotMessages =
+    document.getElementById("chatbotMessages");
+
+const chatbotInput =
+    document.getElementById("chatbotInput");
+
+const chatbotSend =
+    document.getElementById("chatbotSend");
+
+
+// ==========================================
+// OPEN CHATBOT
+// ==========================================
+
+if (chatbotButton && chatbot) {
+
+    chatbotButton.addEventListener(
+        "click",
+        function() {
+
+            chatbot.classList.add("active");
+
+            if (chatbotInput) {
+                chatbotInput.focus();
+            }
+
+            if (
+                chatbotMessages &&
+                chatbotMessages.children.length === 0
+            ) {
+
+                addBotMessage(
+                    "Hi 👋 How can I help you?"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// CLOSE CHATBOT
+// ==========================================
+
+if (closeChatbot && chatbot) {
+
+    closeChatbot.addEventListener(
+        "click",
+        function() {
+
+            chatbot.classList.remove("active");
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// ADD BOT MESSAGE
+// ==========================================
+
+function addBotMessage(message) {
+
+    if (!chatbotMessages) return;
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "chat-message bot-message";
+
+    div.textContent =
+        message;
+
+    chatbotMessages.appendChild(div);
+
+    chatbotMessages.scrollTop =
+        chatbotMessages.scrollHeight;
+}
+
+
+// ==========================================
+// ADD USER MESSAGE
+// ==========================================
+
+function addUserMessage(message) {
+
+    if (!chatbotMessages) return;
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "chat-message user-message";
+
+    div.textContent =
+        message;
+
+    chatbotMessages.appendChild(div);
+
+    chatbotMessages.scrollTop =
+        chatbotMessages.scrollHeight;
+}
+
+
+// ==========================================
+// CHATBOT RESPONSE
+// ==========================================
+
+function getChatbotResponse(message) {
+
+    const text =
+        message.toLowerCase().trim();
+
+
+    // GREETING
+
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey") ||
+        text.includes("namaste")
+    ) {
+
+        return "Hello 👋 Welcome to WearHouse! How can I help you today?";
+
+    }
+
+
+    // PRODUCTS
+
+    if (
+        text.includes("product") ||
+        text.includes("clothes") ||
+        text.includes("dress") ||
+        text.includes("shirt") ||
+        text.includes("jeans") ||
+        text.includes("jacket")
+    ) {
+
+        return "Sure! 👕 You can explore all our available products from the Shop page.";
+
+    }
+
+
+    // PRICE
+
+    if (
+        text.includes("price") ||
+        text.includes("cost") ||
+        text.includes("cheap")
+    ) {
+
+        return "You can check the latest product prices directly on our Shop and product details pages. 🛍️";
+
+    }
+
+
+    // CART
+
+    if (
+        text.includes("cart") ||
+        text.includes("buy") ||
+        text.includes("purchase")
+    ) {
+
+        return "🛒 You can add products to your cart and review them from the Cart page before checkout.";
+
+    }
+
+
+    // ORDER
+
+    if (
+        text.includes("order") ||
+        text.includes("track") ||
+        text.includes("ordered")
+    ) {
+
+        return "📦 You can check your orders from the Orders page after logging into your WearHouse account.";
+
+    }
+
+
+    // DELIVERY
+
+    if (
+        text.includes("delivery") ||
+        text.includes("shipping") ||
+        text.includes("deliver")
+    ) {
+
+        return "🚚 WearHouse provides delivery services. You can contact our support team for delivery-related questions.";
+
+    }
+
+
+    // RETURN
+
+    if (
+        text.includes("return") ||
+        text.includes("exchange") ||
+        text.includes("refund")
+    ) {
+
+        return "🔄 For returns, exchanges, or refunds, please contact our WearHouse support team.";
+
+    }
+
+
+    // LOGIN
+
+    if (
+        text.includes("login") ||
+        text.includes("log in") ||
+        text.includes("account")
+    ) {
+
+        return "👤 You can log in or create a new account from the Account section.";
+
+    }
+
+
+    // CONTACT
+
+    if (
+        text.includes("contact") ||
+        text.includes("support") ||
+        text.includes("help")
+    ) {
+
+        return "💬 You can contact WearHouse through the Contact Us section on our homepage.";
+
+    }
+
+
+    // PAYMENT
+
+    if (
+        text.includes("payment") ||
+        text.includes("pay") ||
+        text.includes("cash")
+    ) {
+
+        return "💳 Available payment methods are shown during checkout.";
+
+    }
+
+
+    // THANK YOU
+
+    if (
+        text.includes("thank") ||
+        text.includes("thanks")
+    ) {
+
+        return "You're welcome! 😊 I'm always happy to help.";
+
+    }
+
+
+    // BYE
+
+    if (
+        text.includes("bye") ||
+        text.includes("goodbye")
+    ) {
+
+        return "Goodbye 👋 Thanks for visiting WearHouse!";
+
+    }
+
+
+    // DEFAULT
+
+    return "I'm here to help with products, prices, cart, orders, delivery, returns, payments, and general WearHouse questions. 😊";
+
+}
+
+
+// ==========================================
+// SEND CHAT MESSAGE
+// ==========================================
+
+function sendChatMessage() {
+
+    if (!chatbotInput) return;
+
+    const message =
+        chatbotInput.value.trim();
+
+    if (!message) return;
+
+
+    // SHOW USER MESSAGE
+
+    addUserMessage(message);
+
+
+    // CLEAR INPUT
+
+    chatbotInput.value = "";
+
+
+    // BOT THINKING
+
+    setTimeout(
+        function() {
+
+            const response =
+                getChatbotResponse(message);
+
+            addBotMessage(response);
+
+        },
+        500
+    );
+
+}
+
+
+// ==========================================
+// SEND BUTTON
+// ==========================================
+
+if (chatbotSend) {
+
+    chatbotSend.addEventListener(
+        "click",
+        sendChatMessage
+    );
+
+}
+
+
+// ==========================================
+// ENTER KEY
+// ==========================================
+
+if (chatbotInput) {
+
+    chatbotInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendChatMessage();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        loadProducts();
+
+        displayCart();
+
+        loadProductDetails();
+
+        loadOrders();
+
+        loadProfile();
+
+        updateCartCount();
+
+    }
+);
