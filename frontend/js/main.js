@@ -165,6 +165,144 @@ function createProductCard(product) {
     `;
 }
 
+// ==========================================
+// WISHLIST
+// ==========================================
+
+function getWishlist() {
+
+    try {
+
+        const wishlist =
+            JSON.parse(
+                localStorage.getItem("wishlist") || "[]"
+            );
+
+        return Array.isArray(wishlist)
+            ? wishlist.map(String)
+            : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+}
+
+
+// ==========================================
+// SAVE WISHLIST
+// ==========================================
+
+function saveWishlist(wishlist) {
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
+
+}
+
+
+// ==========================================
+// ADD OR REMOVE WISHLIST ITEM
+// ==========================================
+
+function toggleWishlist(productId) {
+
+    const id = String(productId);
+
+    let wishlist = getWishlist();
+
+    if (wishlist.includes(id)) {
+
+        wishlist = wishlist.filter(
+            item => item !== id
+        );
+
+    } else {
+
+        wishlist.push(id);
+
+    }
+
+    saveWishlist(wishlist);
+
+    // Refresh product cards and their heart icons
+    displayFeaturedProducts();
+    displayProducts();
+
+    // Refresh the Wishlist page if it is open
+    displayWishlist();
+
+}
+
+
+// ==========================================
+// DISPLAY WISHLIST
+// ==========================================
+
+function displayWishlist() {
+
+    const container =
+        document.getElementById("wishlist-products");
+
+    if (!container) return;
+
+    const countElement =
+        document.getElementById("wishlist-count");
+
+    const wishlist = getWishlist();
+
+    const savedProducts =
+        products.filter(
+            product =>
+                wishlist.includes(String(product.id))
+        );
+
+    if (countElement) {
+
+        countElement.textContent =
+            `${savedProducts.length} saved ${
+                savedProducts.length === 1
+                    ? "item"
+                    : "items"
+            }`;
+
+    }
+
+    if (savedProducts.length === 0) {
+
+        container.innerHTML = `
+            <div class="wishlist-empty">
+
+                <div class="empty-heart">♡</div>
+
+                <h2>Your wishlist is empty</h2>
+
+                <p>
+                    Save the styles you love
+                    and find them here later.
+                </p>
+
+                <a
+                    href="products.html"
+                    class="wishlist-shop-button"
+                >
+                    Explore Products
+                </a>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        savedProducts.map(createProductCard).join("");
+
+}
 
 // ==========================================
 // ADD TO CART
