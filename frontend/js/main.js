@@ -81,11 +81,18 @@ function displayProducts(list = products) {
 // PRODUCT CARD
 // ==========================================
 
+// ==========================================
+// PRODUCT CARD WITH WISHLIST HEART
+// ==========================================
+
 function createProductCard(product) {
 
     const discountedPrice =
         product.price -
         (product.price * product.discount / 100);
+
+    const isWishlisted =
+        getWishlist().includes(String(product.id));
 
     return `
         <div class="product-card">
@@ -99,6 +106,16 @@ function createProductCard(product) {
                        </span>`
                     : ""
                 }
+
+                <button
+                    type="button"
+                    class="wishlist-heart ${isWishlisted ? "wishlisted" : ""}"
+                    onclick="toggleWishlist(${JSON.stringify(String(product.id))})"
+                    aria-label="${isWishlisted ? "Remove from wishlist" : "Add to wishlist"}"
+                    title="${isWishlisted ? "Remove from wishlist" : "Add to wishlist"}"
+                >
+                    ${isWishlisted ? "♥" : "♡"}
+                </button>
 
                 <a href="product-details.html?id=${product.id}">
                     <img
