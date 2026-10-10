@@ -17,12 +17,14 @@ async function loadProducts() {
 
     try {
 
-        const response = await fetch(`${API_URL}/products`);
+        const response =
+            await fetch(`${API_URL}/products`);
 
         products = await response.json();
 
         displayFeaturedProducts();
         displayProducts();
+        displayWishlist();
 
         updateCartCount();
 
@@ -32,7 +34,6 @@ async function loadProducts() {
 
     }
 }
-
 
 // ==========================================
 // FEATURED PRODUCTS
